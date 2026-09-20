@@ -1,0 +1,3 @@
+                routerboard: yes
+                     model: CHR
+              serial-number: ABCD1234EFGH

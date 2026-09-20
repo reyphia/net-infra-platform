@@ -1,0 +1,14 @@
+                   uptime: 3w4d5h6m7s
+                  version: 7.15 (stable)
+               build-time: Jul/01/2024 10:00:00
+              free-memory: 512.0MiB
+             total-memory: 1024.0MiB
+                    cpu: ARM64
+              cpu-count: 4
+           cpu-frequency: 1400MHz
+                cpu-load: 3%
+        free-hdd-space: 100.0MiB
+       total-hdd-space: 128.0MiB
+       architecture-name: arm64
+              board-name: CHR
+                factory-software: 7.1

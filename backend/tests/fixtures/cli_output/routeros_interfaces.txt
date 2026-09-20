@@ -1,0 +1,3 @@
+Flags: D - dynamic, X - disabled, R - running, S - slave
+ 0  R  name="ether1" default-name="ether1" type="ether" mtu=1500 mac-address=AA:BB:CC:00:11:22 comment="WAN uplink"
+ 1     name="ether2" default-name="ether2" type="ether" mtu=1500 mac-address=AA:BB:CC:00:11:23 disabled=yes

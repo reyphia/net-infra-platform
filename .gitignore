@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.venv/
+venv/
+
+# Backend runtime data -- never commit real device configs or DB contents
+backend/data/
+*.db
+
+# Secrets
+.env
+backend/.env
+frontend/.env
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+*.tsbuildinfo
+
+# PyInstaller build output
+backend/build/
+backend/dist/
+release/

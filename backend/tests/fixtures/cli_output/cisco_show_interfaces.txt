@@ -1,0 +1,12 @@
+GigabitEthernet1/0/24 is up, line protocol is up (connected)
+  Hardware is Gigabit Ethernet, address is 0011.2233.4455 (bia 0011.2233.4455)
+  Description: Uplink-ACCESS-02
+  Internet address is 10.10.0.10/24
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec,
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Full-duplex, 1000Mb/s, media type is 10/100/1000BaseTX
+GigabitEthernet1/0/25 is administratively down, line protocol is down (disabled)
+  Hardware is Gigabit Ethernet, address is 0011.2233.4456 (bia 0011.2233.4456)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec,
+  Half-duplex, 100Mb/s

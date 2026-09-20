@@ -1,0 +1,46 @@
+{
+  "_comment": "Sanitized example data for local development and documentation only. These are NOT real discovered devices and are never loaded automatically -- see backend/tests/fixtures/cli_output/ for the CLI-output fixtures actually used by the test suite.",
+  "devices": [
+    {
+      "hostname": "CORE-SW01",
+      "management_ip": "10.10.0.10",
+      "vendor": "Cisco",
+      "model": "WS-C3560-24TS-S",
+      "device_type": "SWITCH",
+      "driver_type": "cisco_ios",
+      "available_management_methods": ["SSH", "SNMP"],
+      "management_state": "REMOTELY_MANAGEABLE"
+    },
+    {
+      "hostname": "EDGE-RTR01",
+      "management_ip": "10.10.0.1",
+      "vendor": "Cisco",
+      "model": "ISR4321/K9",
+      "device_type": "ROUTER",
+      "driver_type": "cisco_ios",
+      "available_management_methods": ["SSH", "SNMP"],
+      "management_state": "REMOTELY_MANAGEABLE"
+    },
+    {
+      "hostname": "MT-EDGE01",
+      "management_ip": "10.10.0.2",
+      "vendor": "MikroTik",
+      "model": "CHR",
+      "device_type": "ROUTER",
+      "driver_type": "mikrotik_routeros",
+      "available_management_methods": ["SSH", "SNMP"],
+      "management_state": "REMOTELY_MANAGEABLE"
+    },
+    {
+      "hostname": "LEGACY-RTR01",
+      "management_ip": "10.10.0.250",
+      "vendor": "Cisco",
+      "model": "2811",
+      "device_type": "ROUTER",
+      "driver_type": null,
+      "available_management_methods": ["SNMP"],
+      "management_state": "MONITORABLE",
+      "_note": "SSH not configured on this device -- console-only in practice. Demonstrates the platform's discovered-but-not-manageable state."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+Cisco IOS Software, C3560 Software (C3560-IPSERVICESK9-M), Version 15.0(2)SE11, RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+
+ROM: Bootstrap program is C3560 boot loader
+
+CORE-SW01 uptime is 12 weeks, 3 days, 4 hours, 22 minutes
+System returned to ROM by power-on
+System image file is "flash:/c3560-ipservicesk9-mz.150-2.SE11.bin"
+
+cisco WS-C3560-24TS-S (PowerPC405) processor (revision H0) with 131072K bytes of memory.
+Processor board ID FOC1234X5YZ
+System serial number: FOC1234X5YZ

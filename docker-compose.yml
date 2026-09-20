@@ -1,0 +1,38 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=sqlite+aiosqlite:///./data/platform.db
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in your .env file}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:?Set ENCRYPTION_KEY in your .env file (see README for how to generate one)}
+      - SSH_ALLOW_INSECURE_LAB_MODE=${SSH_ALLOW_INSECURE_LAB_MODE:-false}
+      - DISCOVERY_DEFAULT_TIMEOUT_SECONDS=${DISCOVERY_DEFAULT_TIMEOUT_SECONDS:-2.0}
+      - DISCOVERY_DEFAULT_MAX_CONCURRENCY=${DISCOVERY_DEFAULT_MAX_CONCURRENCY:-50}
+    volumes:
+      - platform-data:/app/data
+    # The discovery engine needs to reach devices on the operator's real
+    # network (ARP table, ICMP, SNMP, SSH). Host networking is the simplest
+    # correct option for a tool like this; see docs/deployment.md for
+    # alternatives (macvlan, routed bridge) if host networking isn't
+    # appropriate for your environment.
+    network_mode: host
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    # NOTE: with backend on network_mode: host, the frontend container's
+    # `backend:8000` DNS name won't resolve as a normal compose service link.
+    # docs/deployment.md documents both topologies (host networking for
+    # single-host bare-metal use, and a bridged alternative for constrained
+    # environments) -- pick the one matching your deployment.
+
+volumes:
+  platform-data:

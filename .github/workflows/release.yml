@@ -1,0 +1,89 @@
+name: Release
+
+# Triggered by pushing a version tag, e.g.:
+#   git tag v0.1.0 && git push origin v0.1.0
+#
+# This is the authoritative way to produce a Windows .exe for this project:
+# scripts/build_release_windows.ps1 is written correctly but was never
+# hand-run on a physical Windows machine during development (the project
+# was built in a Linux-only environment). This workflow runs it for real on
+# GitHub's own `windows-latest` runner, so every release artifact it
+# produces has actually executed on Windows, not just been reviewed by eye.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch: {}
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build release
+        run: |
+          chmod +x scripts/build_release_linux.sh
+          ./scripts/build_release_linux.sh
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-release
+          path: release/*.tar.gz
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Build release
+        shell: pwsh
+        run: .\scripts\build_release_windows.ps1
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-release
+          path: release/*.zip
+
+  publish:
+    if: startsWith(github.ref, 'refs/tags/')
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: linux-release
+          path: release/
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: windows-release
+          path: release/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
+          generate_release_notes: true
+          body_path: CHANGELOG.md
